@@ -126,7 +126,8 @@ activate :i18n,
 
 set :gauges_id, ''
 set :publisher_url, 'https://www.facebook.com/olivier.lacan.5'
-set :site_url, 'https://keepachangelog.com'
+set :site_url, 'https://qubitpi.github.io'
+set :path_prefix, '/keep-a-changelog/'
 
 redirect "index.html", to: "en/#{$last_version}/index.html"
 
@@ -142,6 +143,10 @@ set :css_dir, 'assets/stylesheets'
 set :js_dir, 'assets/javascripts'
 set :images_dir, 'assets/images'
 set :fonts_dir, 'assets/fonts'
+
+# https://github.com/edgecase/middleman-gh-pages#project-page-path-issues
+activate :relative_assets
+set :relative_links, true
 
 # ----- Images ----- #
 
@@ -190,7 +195,7 @@ set :markdown, $markdown_config
 
 helpers do
   def path_to_url(path)
-    Addressable::URI.join(config.site_url, path).normalize.to_s
+    return "#{config.site_url}/keep-a-changelog#{path}"
   end
 
   def available_translation_for(language)
