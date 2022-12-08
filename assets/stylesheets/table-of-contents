@@ -1,0 +1,26 @@
+.toc {
+  position: fixed;
+  z-index: 9999;
+  top: 10%;
+  left: 0; }
+  .toc ul {
+    list-style-position: inside;
+    list-style-type: decimal-leading-zero;
+    padding: 0 0 0 1em; }
+    .toc ul li {
+      padding-left: 1em;
+      line-height: 2; }
+      .toc ul li a {
+        padding: 0 1em;
+        line-height: 2;
+        display: none; }
+        .toc ul li a span {
+          display: none; }
+    .toc ul li:hover {
+      color: #FEECD3;
+      background: #342828; }
+    .toc ul li:hover a {
+      color: #FEECD3;
+      font-weight: bold;
+      background-color: #342828;
+      display: inline-block; }
