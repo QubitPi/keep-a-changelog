@@ -2,7 +2,7 @@
 
 [![Keep a Changelog v1.1.0 badge][changelog-badge]][changelog] [![Version 1.1.0 Badge][version-badge]][changelog] [![MIT License Badge][license-badge]][license]
 
-Don’t let your friends dump git logs into changelogs™
+Don't let your friends dump git logs into changelogs™
 
 This repository generates https://keepachangelog.com/.
 
@@ -29,6 +29,28 @@ This repository generates https://keepachangelog.com/.
   case `publish` failed
 - `bin/rake deploy` cleans, builds and pushes to the `gh-pages` branch on GitHub so 
   the site is deployed to keepachangelog.com
+
+The deployment utilizes [Middleman Github Pages](https://github.com/edgecase/middleman-gh-pages) to build and publish to
+GitHub Pages in the following steps
+
+Create `gh-pages` branch **if it's not there yet**:
+
+```bash
+git checkout -b gh-pages master
+git push origin gh-pages
+```
+
+Build and publish the page
+
+```bash
+rm -rf build
+bundle exec rake publish
+```
+
+> ⚠️ For your life, health, and the persons who love you, do NOT use
+> [Ruby's Addressable::URI.join](https://stackoverflow.com/a/8902573) for the God sake.
+
+> This **fork** deploys version **1.0.0**
 
 ### Translations
 
