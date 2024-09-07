@@ -9,12 +9,9 @@ name: Ruby
 
 on:
   push:
-    branches: [ "main" ]
+    branches: [ "master" ]
   pull_request:
-    branches: [ "main" ]
-
-permissions:
-  contents: read
+    branches: [ "master" ]
 
 jobs:
   test:
@@ -36,3 +33,17 @@ jobs:
         bundler-cache: true # runs 'bundle install' and caches installed gems automatically
     - name: Run tests
       run: bin/rake test
+    - name: Build documentation
+      run: |
+        gem install jekyll
+        bundle install
+        bundle exec rake build
+    - name: Deploy to GitHub Pages
+      if: github.ref == 'refs/heads/master'
+      uses: peaceiris/actions-gh-pages@v3
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        publish_dir: build
+        enable_jekyll: false
+        user_name: QubitPi
+        user_email: jack20220723@gmail.com
